@@ -23,6 +23,7 @@ func RunSyncCommand(ProductID string, PodIDList []string, Command string) *ACEP.
 	resp, err := service.RunSyncCommand(context.Background(), body)
 	if err != nil {
 		fmt.Printf("error %v", err)
+		fmt.Printf("resp %v", resp)
 		panic(err)
 	} else {
 		b, _ := json.Marshal(resp)
