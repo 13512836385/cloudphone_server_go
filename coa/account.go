@@ -41,13 +41,13 @@ func SwitchRole(role_index int) {
 
 	if role_index <= 4 {
 		// 向上滑动到最上为止
-		server.Swipe(500, 100, 500, 500, 1000)
+		server.Swipe(400, 300, 400, 1000, 1000)
 
 		// 选择角色
 		server.Tap(role_position[role_index].X, role_position[role_index].Y)
 	} else {
 		// 向下滑动到最下为止
-		server.Swipe(500, 500, 500, 100, 1000)
+		server.Swipe(400, 1000, 400, 300, 1000)
 		// 选择角色
 		server.Tap(role_position[role_index].X, role_position[role_index].Y)
 	}

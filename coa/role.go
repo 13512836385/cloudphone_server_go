@@ -13,11 +13,14 @@ func ClaimRewards() {
 // 点击战斗模块
 func TapBattle() {
 	server.Tap(1825, 430)
+	time.Sleep(1 * time.Second)
+
 }
 
 // 点击冒险玩法
 func TapAdventure() {
 	server.Tap(400, 400)
+	time.Sleep(1 * time.Second)
 }
 
 func WaitLoading() {
@@ -113,7 +116,7 @@ func Abyss(index int) {
 		time.Sleep(3 * time.Second)
 		// 移动到npc位置
 		server.Move(290, 400, 5000)
-		// time.Sleep(10 * time.Second)
+		time.Sleep(1 * time.Second)
 		// 点击确定挑战
 		TapEnsure()
 	} else {
@@ -127,16 +130,17 @@ func Abyss(index int) {
 	// 等待读屏加载地图
 	WaitLoading()
 	// 移动触发战斗
-	server.Move(290, 400, 3500)
+	server.Move(290, 400, 2500)
 	// time.Sleep(100 * time.Second)
 	// 战斗系统
 	Battle()
+	time.Sleep(5 * time.Second)
 	// 退出副本奖励界面
 	TapExitReward()
 	// 再点击一次防止由于战斗操作点击选中奖励物品介绍
 	TapExitReward()
 	// 再点击一次防止卡在柱子界面
-	time.Sleep(10 * time.Second)
+	time.Sleep(5 * time.Second)
 	TapExitReward()
 	// 离开副本
 	TapExitInstance()

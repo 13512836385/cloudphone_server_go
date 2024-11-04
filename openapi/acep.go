@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"time"
 
 	ACEP "github.com/volcengine/volc-sdk-golang/service/acep"
 )
@@ -20,16 +21,21 @@ func RunSyncCommand(ProductID string, PodIDList []string, Command string) *ACEP.
 		// 执行的命令，支持的命令详见 [命令列表](URL_ADDRESS
 		Command: Command,
 	}
-	resp, err := service.RunSyncCommand(context.Background(), body)
-	if err != nil {
-		fmt.Printf("error %v", err)
-		fmt.Printf("resp %v", resp)
-		panic(err)
-	} else {
-		b, _ := json.Marshal(resp)
-		fmt.Println(string(b))
+	for i := 0; i < 2; i++ {
+		resp, err := service.RunSyncCommand(context.Background(), body)
+		if err != nil {
+			// 打印报错信息
+			fmt.Printf("error %v", err)
+			fmt.Printf("resp %v", resp)
+			fmt.Printf("API call failed, retrying... (attempt %d)\n", i+1)
+			time.Sleep(time.Second)
+		} else {
+			b, _ := json.Marshal(resp)
+			fmt.Println(string(b))
+			return resp
+		}
 	}
-	return resp
+	panic("API call failed after 2 attempts")
 }
 
 func screen_shot(ProductID string, PodID string) {

@@ -12,14 +12,17 @@ func TapSkill(index int) {
 		server.Tap(1800, 700)
 	} else if index == 4 {
 		server.Tap(1800, 500)
+	} else if index == 5 {
+		server.Tap(1800, 380)
 	}
+
 }
 
 func Battle() {
 	// 实现简单的战斗系统
 	// 每个技能放一轮
-	for i := 0; i < 2; i++ {
-		for j := 0; j < 5; j++ {
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 6; j++ {
 			TapSkill(j)
 		}
 	}
